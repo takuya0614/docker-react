@@ -8,3 +8,15 @@ before_install:
 
 script:
     - docker run -e CI=true htakuya614/docker-react npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: "ap-northeast-1"
+    app: "dpcker-react"
+    env: "DpckerReact-env"
+    bucket_name: "elasticbeanstalk-ap-northeast-1-363888725171"
+    bucket_path: "dpcker-react"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
